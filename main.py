@@ -271,10 +271,10 @@ def inpaint_missing_region(img):
                          -1, 255, thickness=cv2.FILLED)
 
         # 4. Minimal Dilation
-        # Expand the mask slightly (1 pixel) to cover the anti-aliased edges
+        # Expand the mask slightly (2 pixels) to cover the anti-aliased edges
         # of the hole, preventing a "halo" effect after inpainting.
         kernel = np.ones((3, 3), np.uint8)
-        final_mask = cv2.dilate(final_mask, kernel, iterations=1)
+        final_mask = cv2.dilate(final_mask, kernel, iterations=2)
 
     # 5. Apply Telea Inpainting
     # Uses pixels from the boundary to interpolate into the missing region.
